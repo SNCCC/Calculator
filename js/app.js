@@ -4,72 +4,104 @@ function init() {
     document.getElementById("textCalculation").innerHTML = "";
     document.getElementById("textResult").innerHTML = "";
 
+    let nums = [7, 8, 9, 4, 5, 6, 1, 2, 3];
     let numDiv = document.getElementById("numDiv");
-    for (let i = 0; i < 10; i++) {
-        let value = i + 1;
-        if (value == 10) {
-            value = 0;
-        }
-        let numObj = document.createElement("button");
-        numObj.className = "btn1";
-        numObj.innerHTML = value;
-        numObj.selfVal = value;
-        numObj.onclick = () => {
-            let val = numObj.selfVal;
+    for (let i = 0; i < nums.length; i++) {
+        let value = nums[i];
+
+        let obj = document.createElement("button");
+        obj.className = "btn1";
+        obj.innerHTML = value;
+        obj.selfVal = value;
+        obj.onclick = () => {
+            let val = obj.selfVal;
             console.log(val);
             document.getElementById("textCalculation").innerHTML += val;
         }
-        numDiv.appendChild(numObj);
+        numDiv.appendChild(obj);
+    }
+
+    let funDiv = document.getElementById("funDiv");
+    let funs = ["00", "0", "."];
+    for (let i = 0; i < funs.length; i++) {
+        let value = funs[i];
+        let obj = document.createElement("button");
+        obj.className = "btn1";
+        obj.innerHTML = value;
+        obj.selfVal = value;
+        obj.onclick = () => {
+            let val = obj.selfVal;
+            console.log(val);
+            document.getElementById("textCalculation").innerHTML += val;
+        }
+        funDiv.appendChild(obj);
     }
 
     let symbolDiv = document.getElementById("symbolDiv");
-    let symbols = ["+", "-", "*", "/", "."];
+    let symbols = ["÷", "×", "－", "＋", "＝"];
     for (let i = 0; i < symbols.length; i++) {
         let value = symbols[i];
-        let symbolObj = document.createElement("button");
-        symbolObj.className = "btn1";
-        symbolObj.innerHTML = value;
-        symbolObj.selfVal = value;
-        symbolObj.onclick = () => {
-            let val = symbolObj.selfVal;
+        let obj = document.createElement("button");
+        obj.className = "btn2";
+        obj.innerHTML = value;
+        obj.selfVal = value;
+        obj.onclick = () => {
+            let val = obj.selfVal;
             console.log(val);
-            document.getElementById("textCalculation").innerHTML += val;
-        }
-        symbolDiv.appendChild(symbolObj);
-    }
-
-    let outDiv = document.getElementById("outDiv");
-    let outs = ["=", "tap", "clear"];
-    for (let i = 0; i < outs.length; i++) {
-        let value = outs[i];
-        let outObj = document.createElement("button");
-        outObj.className = "btn1";
-        outObj.innerHTML = value;
-        outObj.selfVal = value;
-        outObj.onclick = () => {
-            let val = outObj.selfVal;
-            console.log(val);
-            if (val == "=") {
+            if (val == "＝") {
                 let str = document.getElementById("textCalculation").innerHTML;
+                str = str.replace("＋", "+");
+                str = str.replace("－", "-");
+                str = str.replace("×", "*");
+                str = str.replace("÷", "/");
                 try {
-                    document.getElementById("textResult").innerHTML = "" + Math.round(Number(eval(str)) * 1000) / 1000;
+                    document.getElementById("textResult").innerHTML = "=" + Math.round(Number(eval(str)) * 1000) / 1000;
                 } catch {
                     document.getElementById("textResult").innerHTML = "表达式错误";
                 }
             } else {
-                if (val == "tap") {
+                document.getElementById("textCalculation").innerHTML += val;
+            }
+        }
+        symbolDiv.appendChild(obj);
+    }
+
+    let outDiv = document.getElementById("outDiv");
+    let outs = ["C", "←", "%"];
+    for (let i = 0; i < outs.length; i++) {
+        let value = outs[i];
+        let obj = document.createElement("button");
+        obj.className = "btn2";
+        obj.innerHTML = value;
+        obj.selfVal = value;
+        obj.onclick = () => {
+            let val = obj.selfVal;
+            console.log(val);
+            if (val == "C") {
+                document.getElementById("textCalculation").innerHTML = "";
+                document.getElementById("textResult").innerHTML = "";
+            } else {
+                if (val == "←") {
                     if (document.getElementById("textCalculation").innerHTML.length > 0) {
                         document.getElementById("textCalculation").innerHTML = document.getElementById("textCalculation").innerHTML.substring(0, document.getElementById("textCalculation").innerHTML.length - 1);
                         document.getElementById("textResult").innerHTML = "";
                     }
                 } else {
-                    if (val == "clear") {
-                        document.getElementById("textCalculation").innerHTML = "";
-                        document.getElementById("textResult").innerHTML = "";
+                    if (val == "%") {
+                        let str = document.getElementById("textCalculation").innerHTML;
+                        str = str.replace("＋", "+");
+                        str = str.replace("－", "-");
+                        str = str.replace("×", "*");
+                        str = str.replace("÷", "/");
+                        try {
+                            document.getElementById("textResult").innerHTML = "%=" + Math.round((Number(eval(str)) / 100) * 1000) / 1000;
+                        } catch {
+                            document.getElementById("textResult").innerHTML = "表达式错误";
+                        }
                     }
                 }
             }
         }
-        outDiv.appendChild(outObj);
+        outDiv.appendChild(obj);
     }
 }

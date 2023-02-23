@@ -1,7 +1,37 @@
 .btn1 {
-    width: 50px;
-    height: 50px;
+    width: 33.3%;
+    height: 33.3%;
     font-size: 20px;
+}
+
+.btn2 {
+    width: 66.6px;
+    height: 66.6px;
+    font-size: 20px;
+}
+
+#numDiv {
+    width: 200px;
+    height: 200px;
+}
+
+#funDiv {
+    width: 200px;
+    height: 200px;
+}
+
+#symbolDiv {
+    margin-left: 200px;
+    margin-top: -466.6px;
+    writing-mode: vertical-lr;
+    float: left;
+}
+
+#outDiv {
+    margin-left: 0px;
+    margin-top: -466.6px;
+    writing-mode: horizontal-tb;
+    float: left;
 }
 
 .text1 {
@@ -10,5 +40,5 @@
 
 #textDiv {
     width: 500px;
-    height: 80px;
+    height: 150px;
 }
