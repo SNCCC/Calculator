@@ -38,7 +38,7 @@ function init() {
     }
 
     let symbolDiv = document.getElementById("symbolDiv");
-    let symbols = ["÷", "×", "－", "＋", "＝"];
+    let symbols = ["÷", "×", "-", "+", "＝"];
     for (let i = 0; i < symbols.length; i++) {
         let value = symbols[i];
         let obj = document.createElement("button");
@@ -50,10 +50,9 @@ function init() {
             console.log(val);
             if (val == "＝") {
                 let str = document.getElementById("textCalculation").innerHTML;
-                str = str.replace("＋", "+");
-                str = str.replace("－", "-");
-                str = str.replace("×", "*");
-                str = str.replace("÷", "/");
+                str = str.replace(new RegExp("×", "g"), "*");
+                str = str.replace(new RegExp("÷", "g"), "/");
+                console.log(str);
                 try {
                     document.getElementById("textResult").innerHTML = "=" + Math.round(Number(eval(str)) * 1000) / 1000;
                 } catch {
@@ -89,10 +88,8 @@ function init() {
                 } else {
                     if (val == "%") {
                         let str = document.getElementById("textCalculation").innerHTML;
-                        str = str.replace("＋", "+");
-                        str = str.replace("－", "-");
-                        str = str.replace("×", "*");
-                        str = str.replace("÷", "/");
+                        str = str.replace(new RegExp("×", "g"), "*");
+                        str = str.replace(new RegExp("÷", "g"), "/");
                         try {
                             document.getElementById("textResult").innerHTML = "%=" + Math.round((Number(eval(str)) / 100) * 1000) / 1000;
                         } catch {

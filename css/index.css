@@ -2,12 +2,14 @@
     width: 33.3%;
     height: 33.3%;
     font-size: 20px;
+    border-radius: 25%;
 }
 
 .btn2 {
     width: 66.6px;
     height: 66.6px;
     font-size: 20px;
+    border-radius: 25%;
 }
 
 #numDiv {
@@ -41,4 +43,8 @@
 #textDiv {
     width: 500px;
     height: 150px;
+}
+
+#pDiv {
+    margin: auto;
 }
